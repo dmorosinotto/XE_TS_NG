@@ -1,0 +1,13 @@
+﻿//Mostrare GoTo Definition su metodo sort o su slice per mostrare file definizione lib.d.ts
+//Implementazione base delle classi (far vedere sul Playground la conversione in javascript)
+
+class Point {
+    x: number;
+    y: number;
+}
+
+var p = new Point();
+p.x = 30;
+p.y = 40;
+
+var test=p;

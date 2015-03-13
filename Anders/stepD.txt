@@ -1,0 +1,51 @@
+﻿//Mostro Ereditarietà classi, modificatori di accesso private e protected + utilizzo super su constructor (con default) + overload metodo toString
+
+class Point {
+    constructor(public x: number, public y: number) { //costruttore con syntactic sugar per dichiarazione campi
+    }
+
+    protected delta2 = (from: Point) => { //dichiarazione metodo scritto con sintassi lambda
+        var dx = this.x - from.x;
+        var dy = this.y - from.y;
+        return dx * dx + dy * dy;
+    }
+
+    get dist() { return Math.sqrt(this.delta2(Point.Origin)) } //esempio di proprietà Object.defineProperty in ES5
+
+    static Origin = new Point(0, 0); //esempio di static --> viene messo come proprietà della funzione costruttore
+
+    toString() { return this.x + " , " + this.y; } //esempio di metodo classico ovveride della toString()
+}
+
+class ColoredPoint extends Point { //esempio ereditarietà
+    private color: string;
+    constructor(col: string, public x: number= 10, public y: number=10) { //esempio di default values per costruttore
+        super(x, y);    //richiamo costruttore classe base
+        this.color = col;
+    }
+
+    toString() { //overload metodo + richiamo implementazione base + accesso protected valido
+		return this.color + " @" + super.toString() + " --> " + this.delta2(Point.Origin); 
+	} 
+}
+
+
+var p = new Point(10,20);
+p.x = 30;
+p.y = 40;
+var c = new ColoredPoint('red');
+alert(c); //internamente richiama toString()
+
+var test = {
+    'p': p,
+    'c': c,
+    'origin': Point.Origin,
+    'p.dist': p.dist,
+    'c.dist': c.dist,
+    'c è Point': c instanceof Point,
+    'p è Point': p instanceof Point,
+    'c è ColoredPoint': c instanceof ColoredPoint,
+    'p NON è ColoredPoint': p instanceof ColoredPoint,
+    //'color' : c.color //errore private non accessibile, ma c'è
+    //'distance' : p.distance //protected non accessibile da fuori, ma c'è
+}

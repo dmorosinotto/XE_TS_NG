@@ -1,0 +1,23 @@
+﻿// Mostro sintassi costruttore e metodo
+
+class Point {
+    x: number;
+    y: number;
+    constructor(x: number, y: number) { //costruttore esplicito
+        this.x = x;
+        this.y = y;
+    }
+   
+    dist() { // esempio di metodo che usa variabili stato interno
+        return Math.sqrt(this.x * this.x + this.y * this.y);
+    }
+}
+
+var p = new Point(10,20);
+p.x = 30;
+p.y = 40;
+
+var test {
+	'p': p,
+	'dist': p.dist
+};

@@ -1,0 +1,19 @@
+﻿// Mostro come modellare metodi nelle interface + implementazione metodi con lambda + typeflow s tipo string
+
+interface Entity {
+    name: string;
+    price: number;
+    inStock?: boolean;
+    getName(): string;
+    setName(value: string): void;
+}
+
+var e: Entity = {
+    name: "Surface3",
+    price: 919,
+    inStock: true,
+    getName: function () {
+        return this.name;
+    },
+    setName: s => this.name = s
+};

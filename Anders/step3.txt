@@ -1,0 +1,14 @@
+﻿// Mostro refactoring name --> entityName e cambia solo i "name" giusti
+
+interface Entity {
+    entityName: string;
+}
+
+function sortByName(a: Entity[]) {
+    var result = a.slice(0);
+    result.sort(function (x, y) {
+        var name="abc";
+        return x.entityName.localeCompare(y.entityName);
+    });
+    return result;
+}

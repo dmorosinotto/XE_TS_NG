@@ -1,0 +1,13 @@
+﻿//Aggiungo interfaccia per tipizzare Array e ho type flow inference su sort x e y di tipo Entity e posso usare .name --> controllo errore localeCompare
+
+interface Entity {
+    name: string;
+}
+
+function sortByName(a: Entity[]) {
+    var result = a.slice(0);
+    result.sort(function (x, y) {
+        return x.name.localCompare(y.name); //mostra errore digitazione :-)
+    });
+    return result;
+}

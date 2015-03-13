@@ -1,0 +1,13 @@
+﻿// Mostro intellisense e type checking sfruttnado interface
+
+interface Entity {
+    name: string;
+    price: number;
+    inStock?: boolean;
+}
+
+var e: Entity = {
+    name: "Surface3",
+    //intellisense nomi proprietà p...
+    inStock: 5	//errore type checking + optional
+};

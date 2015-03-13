@@ -1,0 +1,60 @@
+﻿//Mostro internal module: (namespace con IIFE) + export: visibilità all'esterno + open-ended: possibilità estendere
+
+module Utils { //esempio internal module --> namespace IIFE
+    class Point { //implementazione INTERNA non visibile all'esterno
+        constructor(public x: number, public y: number) { //costruttore con syntactic sugar per dichiarazione campi
+        }
+
+        protected delta2 = (from: { x: number; y:number}) => { //dichiarazione metodo scritto con sintassi lambda
+            var dx = this.x - from.x;
+            var dy = this.y - from.y;
+            return dx * dx + dy * dy;
+        }
+
+        dist() { return Math.sqrt(this.delta2(Point.Origin)) } //esempio di proprietà Object.defineProperty in ES5
+
+        static Origin = new Point(0, 0); //esempio di static --> viene messo come proprietà della funzione costruttore
+
+        toString() { return this.x + " , " + this.y; } //esempio di metodo classico ovveride della toString()
+    }
+
+    export class ColoredPoint extends Point { //per rendere visibile devo fare export!!! 
+        private color: string;
+        constructor(col: string, public x: number= 10, public y: number= 10) { //esempio di default values per costruttore
+            super(x, y);    //richiamo costruttore classe base
+            this.color = col;
+        }
+
+        toString() { //overload metodo + richiamo implementazione base + accesso protected valido
+            return this.color + " @" + super.toString() + " --> " + this.delta2(Point.Origin);
+        }
+    }
+}
+
+module Utils { //moduli sono open-ended posso estenderli su altri file
+    export var DEFAULTCOLOR = "yellow";
+    export class Point3D extends Utils.ColoredPoint {
+        constructor(public z: number) {
+            super(DEFAULTCOLOR);
+        }
+
+        dist() {
+            return Math.sqrt(this.delta2({x: super.dist(), y: this.z}) );
+        }
+    }
+}
+
+
+var d = new Utils.Point3D(20);
+alert(d);
+
+var test = {
+    //'p': new Utils.Point(10,20), //non accessibile
+    'c': new Utils.ColoredPoint(Utils.DEFAULTCOLOR),
+    'd': d,
+    'origin': Utils.ColoredPoint.Origin,
+    'dist': d.dist(),
+    'd è ColoredPoint': d instanceof Utils.ColoredPoint,
+    'd è Point3D': d instanceof Utils.Point3D,
+    //'c è Point': c instanceof Utils.Point, //non accessibile
+}

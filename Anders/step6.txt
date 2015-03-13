@@ -1,0 +1,25 @@
+﻿//Mostrare su http://www.typescriptlang.org/Playground il codice JS generato + typecheck e typeinfernce su products
+
+interface Entity {
+    name: string;
+    price: number;
+    inStock?: boolean
+}
+
+function sortByName(a: Entity[]) {
+    var result = a.slice(0);
+    result.sort(function (x, y) {
+        var name="abc";
+        return x.name.localeCompare(y.name);
+    });
+    return result;
+}
+
+var products = [
+    { name: "Surface3", price: 919, id: 300223100 },
+    { name: "iPhone 6", price: 729, id: 50042416967 }, 
+    { name: "Mac Pro", price: 3053.03, id: 151442705310 },
+    { name: "MS Band", price: 199.9, id: 748406274423 }
+];
+
+var test = sortByName(products); //typecheck + typeinference su products

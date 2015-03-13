@@ -1,0 +1,25 @@
+﻿//Mostro utilizzo Generics per typeflow + callback implementatta con Lambda e typeinference su i --> T {.name, .price} 
+
+interface Entity {
+    name: string;
+}
+
+function sortBy<T>(a: T[], callback: (item:T) => number) {
+    var result = a.slice(0);
+    result.sort(function (x, y) {
+        var kx = callback(x);
+        var ky = callback(y);
+        return kx > ky ? 1 : kx < ky ? -1 : 0;
+    });
+    return result;
+}
+
+var products = [
+    { name: "Surface3", price: 919, id: 300223100 },
+    { name: "iPhone 6", price: 729, id: 50042416967 },
+    { name: "Mac Pro", price: 3053.03, id: 151442705310 },
+    { name: "MS Band", price: 199.9, id: 748406274423 }
+];
+
+var test = sortBy(products, i => i.price); //passaggio di lambda con type inference su i
+alert(test[0].id); //type flow con generics

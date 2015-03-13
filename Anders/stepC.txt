@@ -1,0 +1,29 @@
+﻿//Mostro syntactic sugar per definizione costruttore e campi interni + definizione static, proprietà e metodi (con lamdda)
+
+class Point {
+    constructor(public x: number = 0, public y: number = 0) { //costruttore con syntactic sugar per dichiarazione campi
+    }
+
+    delta2 = (from: Point) => { //dichiarazione metodo scritto con sintassi lambda
+        var dx = this.x - from.x;
+        var dy = this.y - from.y;
+        return dx * dx + dy * dy;
+    }
+
+    get dist() { return Math.sqrt(this.delta2(Point.Origin)) } //esempio di proprietà Object.defineProperty in ES5
+
+    static Origin = new Point(0, 0); //esempio di static --> viene messo come proprietà della funzione costruttore
+
+    toString() { return this.x + " , " + this.y; } //esempio di metodo classico ovveride della toString()
+}
+
+var p = new Point(10,20);
+p.x = 30;
+p.y = 40;
+alert(p); //internamente richiama toString()
+
+var test = {
+	'p': p,
+	'dist': p.dist,
+	'origin': Point.Origin	
+}

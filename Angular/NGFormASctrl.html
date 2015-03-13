@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - Using Angular FormController inside a Controller As</title>
+  
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-animate.js"></script>
+  
+
+  <script type="text/javascript">
+    angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+  </script>
+</head>
+<body ng-app="formExample">
+  <script>
+  function MyController() {
+    this.field = "something required";
+  }
+  MyController.prototype.showValid = function() {
+    //You can access this.<form name> inside the "controller as"
+    window.alert(this.myFormName.$valid);
+  }
+  
+  angular.module('formExample', [])
+    .controller('MyController', MyController);
+</script>
+<style>
+ .my-form {
+   -webkit-transition:all linear 0.5s;
+   transition:all linear 0.5s;
+   background: transparent;
+ }
+ .my-form.ng-invalid {
+   background: red;
+ }
+</style>
+<div ng-controller="MyController as ctrl">
+<!-- to correctly inject Angular FormController inside a "controller as" set name="<controller_as_var>.<form_name>" -->
+<form name="ctrl.myFormName" class="my-form">
+  Input field: <input name="myInputName" ng-model="ctrl.field" required>
+  <span class="error" ng-show="ctrl.myFormName.myInputName.$error.required">Required!</span><br>
+  <tt>ctrl.field = {{ctrl.field}}</tt><br>
+  <tt>ctrl.myFormName.myInputName.$valid = {{ctrl.myFormName.myInputName.$valid}}</tt><br>
+  <tt>ctrl.myFormName.myInputName.$error = {{ctrl.myFormName.myInputName.$error}}</tt><br>
+  <tt>ctrl.myFormName.$valid = {{ctrl.myFormName.$valid}}</tt><br>
+  <tt>ctrl.myFormName.$error.required = {{!!ctrl.myFormName.$error.required}}</tt><br>
+ </form>
+ <button ng-click="ctrl.showValid()">Show Form Valid!</button>
+ </div>
+</body>
+</html>
