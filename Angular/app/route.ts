@@ -16,9 +16,18 @@ module myApp.config {
         }
     }
 
+    /*
     dataRead.$inject = ["ValueData"];
     function dataRead(srv: services.ValueData) {
         return srv.readall();
     }
+    */
+    dataRead.$inject = ["$q"];
+    function dataRead($q: ng.IQService) {
+        var def = $q.defer<string[]>();
+        def.resolve(["Pippo", "Pluto", "Paperino", "Zio Paperone", "Topolino", "Gamba di Legno"]);
+        return def.promise;
+    }
+
 
 } 

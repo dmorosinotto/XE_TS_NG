@@ -98,9 +98,17 @@ var myApp;
             return Route;
         })();
         config.Route = Route;
+        /*
         dataRead.$inject = ["ValueData"];
-        function dataRead(srv) {
+        function dataRead(srv: services.ValueData) {
             return srv.readall();
+        }
+        */
+        dataRead.$inject = ["$q"];
+        function dataRead($q) {
+            var def = $q.defer();
+            def.resolve(["Pippo", "Pluto", "Paperino", "Zio Paperone", "Topolino", "Gamba di Legno"]);
+            return def.promise;
         }
     })(config = myApp.config || (myApp.config = {}));
 })(myApp || (myApp = {}));
@@ -147,42 +155,57 @@ var Shared;
 (function (Shared) {
     var directives;
     (function (directives) {
-        function ngSortBy() {
+        "use strict";
+        function ngSort() {
             return {
-                name: "ngSortBy",
                 restrict: "A",
+                scope: {
+                    sort: "=ngSort",
+                    icon: "@",
+                    iconAsc: "@",
+                    iconDesc: "@"
+                },
+                controllerAs: "just-2Use-bindToController",
+                bindToController: true,
+                controller: ngSortCtrl
+            };
+        }
+        directives.ngSort = ngSort;
+        var ngSortCtrl = (function () {
+            function ngSortCtrl() {
+                this.icon = this.icon || "glyphicon";
+                this.iconAsc = this.iconAsc || "glyphicon-sort-by-attributes";
+                this.iconDesc = this.iconDesc || "glyphicon-sort-by-attributes-alt";
+                this.cols = {};
+            }
+            ngSortCtrl.prototype.register = function (fieldName, colElem) {
+                this.cols[fieldName] = colElem;
+                if (fieldName === this.sort || "-" + fieldName === this.sort)
+                    colElem.addClass(this.icon).addClass(this.sort === fieldName ? this.iconAsc : this.iconDesc);
+            };
+            ngSortCtrl.prototype.sortBy = function (newSortFieldName) {
+                this.sort = ("-" + this.sort === "-" + newSortFieldName) ? "-" + newSortFieldName : newSortFieldName;
+                for (var k in this.cols)
+                    this.cols[k].removeClass(this.icon).removeClass(this.iconAsc).removeClass(this.iconDesc);
+                this.cols[newSortFieldName].addClass(this.icon).addClass(this.sort === newSortFieldName ? this.iconAsc : this.iconDesc);
+            };
+            return ngSortCtrl;
+        })();
+        function ngSortby() {
+            return {
+                restrict: "A",
+                require: "^ngSort",
+                scope: { sortFieldName: "@ngSortby" },
                 transclude: true,
-                //scope: {
-                //    ngSortBy: "@",
-                //    sort: "="
-                //},  
-                scope: false,
-                template: "<a><span ng-transclude></span> <i class='glyphicon glyphicon-sort-by-attributes'></i></a>",
-                link: function (scope, element, attrs) {
-                    var a = element.find("a");
+                template: "<span ng-click='toggleSort(sortFieldName)'><span ng-transclude></span> <i></i></span>",
+                link: function (scope, element, attrs, ctrlParent) {
                     var i = element.find("i");
-                    var sortValue = attrs.ngSortBy;
-                    //var sortValue = scope.ngSortBy;
-                    a.on("click", function () {
-                        scope.$apply(function () {
-                            scope.sort = ("-" + scope.sort === '-' + sortValue) ? "-" + sortValue : sortValue;
-                        });
-                    });
-                    scope.$watch("sort", function (newValue) {
-                        if (newValue === sortValue) {
-                            i.addClass("glyphicon").addClass("glyphicon-sort-by-attributes").removeClass("glyphicon-sort-by-attributes-alt");
-                        }
-                        else if (newValue === "-" + sortValue) {
-                            i.addClass("glyphicon").addClass("glyphicon-sort-by-attributes-alt").removeClass("glyphicon-sort-by-attributes");
-                        }
-                        else {
-                            i.removeClass("glyphicon").removeClass("glyphicon-sort-by-attributes").removeClass("glyphicon-sort-by-attributes-alt");
-                        }
-                    });
+                    ctrlParent.register(scope.sortFieldName, i);
+                    scope.toggleSort = function (fieldName) { return ctrlParent.sortBy(fieldName); };
                 }
             };
         }
-        directives.ngSortBy = ngSortBy;
+        directives.ngSortby = ngSortby;
     })(directives = Shared.directives || (Shared.directives = {}));
 })(Shared || (Shared = {}));
 var myApp;
@@ -192,10 +215,8 @@ var myApp;
         "use strict";
         var ListValue = (function () {
             function ListValue(preloadData) {
-                this.sort = "value";
-                this.model = preloadData.data.map(function (s, i) {
-                    return { id: ((1 + i) / 100), value: s };
-                });
+                this.sort = "-value";
+                this.model = preloadData.map(function (s, i) { return ({ id: ((1 + i) / 100), value: s }); });
             }
             ListValue.$inject = ["preloadData"];
             return ListValue;

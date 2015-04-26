@@ -8,4 +8,4 @@ function sortByName(a: any[]) {
     return result;
 }
 
-sortByName(5); //errore
+var test = sortByName(5); //errore

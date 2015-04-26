@@ -1,0 +1,5 @@
+﻿function ask(question) {
+    var answer = prompt(question);						//pt.1 cambiare		confirm --> prompt		per avere indietro string 
+    var answerView = document.getElementById("answer");	//corretto metodo non esistente getElementbyID --> Id	(typo case-sensitive)
+    answerView.innerText = answer;						//segnala che boolean non può essere assegnato a string --> vai pt.1
+}

@@ -1,0 +1,9 @@
+﻿function Point(x, y) {										//corretto parametro duplicato x --> y
+    this.x = x;
+    this.y = y;
+}
+Point.prototype.dist = function () {
+    return Math.sqrt(this.x * this.x + this.y * this.y);	//corretto accesso globals x,y --> proprietà this.x, this.y
+}
+var p = new Point(10, 20);
+output(p, p.dist());

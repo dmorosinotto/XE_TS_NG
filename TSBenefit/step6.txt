@@ -1,0 +1,9 @@
+﻿function newCoinToss() {
+	return Math.random() > 0.5 ? "TESTA" : "CROCE";		// errore confronto > tra funzione e numero?? corretto caso opposto non facevamo chiamata	Math.random --> Math.random() 
+}
+var tiri = [1, 2, 3, 4, 5].map(newCoinToss);
+
+var allHeads = tiri.every(function (tiro) {
+    return tiro == "TESTA";								// errore funzione ritorna stringa e NON boolean?? corretto = (assegnazione) --> == (confronto o volendo equality ===) 
+});
+if (allHeads) alert(tiri.length + " volte TESTA di fila!?!");	//errore proprietà lenght non definita su boolean??  allHeads --> tiri

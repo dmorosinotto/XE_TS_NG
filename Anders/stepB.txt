@@ -14,10 +14,11 @@ class Point {
 }
 
 var p = new Point(10,20);
-p.x = 30;
-p.y = 40;
+p.y = 30;
 
 var test {
-	'p': p,
-	'dist': p.dist
+	p,     //syntactic sugar ES6 equivale a     p: p,
+	'dist call': p.dist()
 };
+
+document.body.innerText += JSON.stringify(test,null,4);

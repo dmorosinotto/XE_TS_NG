@@ -1,6 +1,6 @@
 ﻿// Mostro come utilizzare external module in Typescript per node.js
 //0. npm install -g tsd
-//1. tsd query node -a install
+//1. tsd query node -a install --save
 //2. file server.ts
 
 /// <reference path="typings/node/node.d.ts" />
@@ -17,7 +17,7 @@ export function initServer(port: number, message: string) {
 
 import srv = require("./server");
 var PORT = 4000;
-srv.initServer(PORT, "Hello World");
+srv.initServer(PORT, "Hello World from TS!");
 console.log("Listening on http://localhost:" + PORT);
 
 //4. tsc hello.ts --module commonjs		

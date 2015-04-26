@@ -1,0 +1,6 @@
+﻿function isPast(date) {
+    var now = new Date().getTime();		//corretto Date() --> se non chiamato con new ritorna la STRINGA della data corrente 
+    return date.getTime() < now;
+}
+var Natale = new Date(2014, 11, 25);	//in JS mesi sono da 0..11 --> Dicembre = 11, ma questo TS non lo può correggere :)
+output(Natale, isPast(Natale)); 

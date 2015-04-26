@@ -1,5 +1,4 @@
 ﻿/// <reference path="typings/node/node.d.ts" />
-
 import http = require("http");
 
 export function initServer(port: number, message: string) {

@@ -1,0 +1,3 @@
+﻿var movie = { title: "Matrix", year: 1999, IMDb: 8.7 }; //rimosso proprietà duplicata	, title = ""
+var ratings = movie.IMDb;								//corretto nome proprietà non esistente IMDB --> IMDb
+alert(movie.title + ' ' + ratings);

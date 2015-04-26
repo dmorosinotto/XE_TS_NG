@@ -1,4 +1,9 @@
-﻿//Mostrare GoTo Definition su metodo sort o su slice per mostrare file definizione lib.d.ts
+﻿//Mostrare GoTo Definition su metodo sort o su slice per mostrare file definizione lib.d.ts + includere 
+
+//Installare tsd    >   npm install -g tsd
+//Scaricare jquery  >   tsd query jquery --action install --save
+//Includere refernce    /// <reference path="typings/jquery/jquery.d.ts" />
+
 //Implementazione base delle classi (far vedere sul Playground la conversione in javascript)
 
 class Point {

@@ -1,9 +1,9 @@
 ﻿<center>
     {{ctrlPartial.sort}}
     <table border="1">
-        <thead>
-            <tr><th ng-sort-by="id">ID</th><th ng-sort-by="value">Value</th></tr>
+        <thead ng-sort="ctrlPartial.sort">
+            <tr><th ng-sortby="id">ID</th><th ng-sortby="value">Value</th></tr>
         </thead>
-        <tr ng-repeat="itm in ctrlPartial.model | orderBy: sort"><td>{{itm.id | Percent:1}}</td><td>{{itm.value}}</td></tr>
+        <tr ng-repeat="itm in ctrlPartial.model | orderBy: ctrlPartial.sort"><td>{{itm.id | Percent:1}}</td><td>{{itm.value}}</td></tr>
     </table>
 </center>

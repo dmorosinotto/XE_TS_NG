@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheAnders", "Anders\TheAnde
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angular", "Angular\Angular.csproj", "{A4263009-C0A5-47F9-AFED-66BC22846E22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSBenefit", "TSBenefit\TSBenefit.csproj", "{4B7ECF38-8190-48C1-B2C3-AEBCED4E13C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A4263009-C0A5-47F9-AFED-66BC22846E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4263009-C0A5-47F9-AFED-66BC22846E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4263009-C0A5-47F9-AFED-66BC22846E22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B7ECF38-8190-48C1-B2C3-AEBCED4E13C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B7ECF38-8190-48C1-B2C3-AEBCED4E13C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B7ECF38-8190-48C1-B2C3-AEBCED4E13C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B7ECF38-8190-48C1-B2C3-AEBCED4E13C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

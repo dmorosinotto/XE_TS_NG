@@ -1,0 +1,5 @@
+﻿function handleLoad() { console.log("Page loaded!"); }
+document.onload = handleLoad;	/*corretto altro typo (case-sensitive)	onLoad --> onload
+								ma poi scopre altro errore: impossibile assegnare		void  a  (ev: Event) => any
+								questo è dovuto al fatto che handleLoad() esegue direttamente la funzione, invece 
+								bisogna passare la referenza alla funzione:		handleLoad() --> handleLoad;	*/

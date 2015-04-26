@@ -4,7 +4,7 @@ class Point {
     constructor(public x: number = 0, public y: number = 0) { //costruttore con syntactic sugar per dichiarazione campi
     }
 
-    delta2 = (from: Point) => { //dichiarazione metodo scritto con sintassi lambda
+    delta2 = (from: Point) => { //dichiarazione metodo scritto con sintassi lambda, viene messo come metodo dell'istanza e non sul prototype!
         var dx = this.x - from.x;
         var dy = this.y - from.y;
         return dx * dx + dy * dy;
@@ -14,7 +14,7 @@ class Point {
 
     static Origin = new Point(0, 0); //esempio di static --> viene messo come proprietà della funzione costruttore
 
-    toString() { return this.x + " , " + this.y; } //esempio di metodo classico ovveride della toString()
+    toString() { return `@Point ${this.x} x ${this.y}`; } //esempio di override del metodo classico toString() con utilizzo del template string ES6 ` = ALT+096
 }
 
 var p = new Point(10,20);
@@ -23,7 +23,9 @@ p.y = 40;
 alert(p); //internamente richiama toString()
 
 var test = {
-	'p': p,
-	'dist': p.dist,
-	'origin': Point.Origin	
+	p,  //syntactic sugar ES6 equivale a     p: p
+	'dist prop': p.dist,
+	zero: Point.Origin	
 }
+
+document.body.innerText += JSON.stringify(test,null,4);

@@ -4,7 +4,7 @@ class Point {
     constructor(public x: number, public y: number) { //costruttore con syntactic sugar per dichiarazione campi
     }
 
-    protected delta2 = (from: Point) => { //dichiarazione metodo scritto con sintassi lambda
+    protected delta2 = (from: Point) => { //dichiarazione metodo scritto con sintassi lambda, viene messo come metodo dell'istanza e non sul prototype!
         var dx = this.x - from.x;
         var dy = this.y - from.y;
         return dx * dx + dy * dy;
@@ -14,7 +14,7 @@ class Point {
 
     static Origin = new Point(0, 0); //esempio di static --> viene messo come proprietà della funzione costruttore
 
-    toString() { return this.x + " , " + this.y; } //esempio di metodo classico ovveride della toString()
+    toString() { return `@Point ${this.x} x ${this.y}`; } //esempio di override del metodo classico toString() con utilizzo del template string ES6 ` = ALT+096
 }
 
 class ColoredPoint extends Point { //esempio ereditarietà
@@ -25,7 +25,7 @@ class ColoredPoint extends Point { //esempio ereditarietà
     }
 
     toString() { //overload metodo + richiamo implementazione base + accesso protected valido
-		return this.color + " @" + super.toString() + " --> " + this.delta2(Point.Origin); 
+		return super.toString().replace("@Point","@" + this.color) + " --> " + this.delta2(Point.Origin); 
 	} 
 }
 
@@ -37,15 +37,17 @@ var c = new ColoredPoint('red');
 alert(c); //internamente richiama toString()
 
 var test = {
-    'p': p,
-    'c': c,
-    'origin': Point.Origin,
+    p,
+    c,
+    zero: Point.Origin,
     'p.dist': p.dist,
     'c.dist': c.dist,
     'c è Point': c instanceof Point,
     'p è Point': p instanceof Point,
     'c è ColoredPoint': c instanceof ColoredPoint,
     'p NON è ColoredPoint': p instanceof ColoredPoint,
-    //'color' : c.color //errore private non accessibile, ma c'è
-    //'distance' : p.distance //protected non accessibile da fuori, ma c'è
+    //'color' : c.color, //errore private non accessibile, ma c'è
+    //'delta2' : p.delta2(c), //protected non accessibile da fuori, ma c'è
 }
+
+document.body.innerText += JSON.stringify(test,null,4);

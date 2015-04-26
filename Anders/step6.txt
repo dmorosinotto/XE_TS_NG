@@ -15,11 +15,11 @@ function sortByName(a: Entity[]) {
     return result;
 }
 
-var products = [
+var arr = [
     { name: "Surface3", price: 919, id: 300223100 },
     { name: "iPhone 6", price: 729, id: 50042416967 }, 
     { name: "Mac Pro", price: 3053.03, id: 151442705310 },
     { name: "MS Band", price: 199.9, id: 748406274423 }
 ];
 
-var test = sortByName(products); //typecheck + typeinference su products
+var test = sortByName(arr); //typecheck + typeinference su products

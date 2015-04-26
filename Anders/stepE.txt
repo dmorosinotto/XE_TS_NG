@@ -11,7 +11,7 @@ module Utils { //esempio internal module --> namespace IIFE
             return dx * dx + dy * dy;
         }
 
-        dist() { return Math.sqrt(this.delta2(Point.Origin)) } //esempio di proprietà Object.defineProperty in ES5
+        get dist() { return Math.sqrt(this.delta2(Point.Origin)) } //esempio di proprietà Object.defineProperty in ES5
 
         static Origin = new Point(0, 0); //esempio di static --> viene messo come proprietà della funzione costruttore
 
@@ -38,8 +38,8 @@ module Utils { //moduli sono open-ended posso estenderli su altri file
             super(DEFAULTCOLOR);
         }
 
-        dist() {
-            return Math.sqrt(this.delta2({x: super.dist(), y: this.z}) );
+        get dist() {
+            return Math.sqrt(this.z*this.z + this.delta2(ColoredPoint.Origin) );
         }
     }
 }
@@ -51,10 +51,12 @@ alert(d);
 var test = {
     //'p': new Utils.Point(10,20), //non accessibile
     'c': new Utils.ColoredPoint(Utils.DEFAULTCOLOR),
-    'd': d,
-    'origin': Utils.ColoredPoint.Origin,
-    'dist': d.dist(),
+    d,
+    zero: Utils.ColoredPoint.Origin,
+    'dist 3d': d.dist,
     'd è ColoredPoint': d instanceof Utils.ColoredPoint,
     'd è Point3D': d instanceof Utils.Point3D,
     //'c è Point': c instanceof Utils.Point, //non accessibile
 }
+
+document.body.innerText += JSON.stringify(test,null,4);

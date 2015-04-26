@@ -1,0 +1,6 @@
+﻿document.addEventListener("mousedown", function (event) {	/* corretto errore clientX,Y non esistono su KeyEvents	keydown --> mousedown
+																TS overload type-inference in base al nome evento, definice il tipo specifico
+																dell'evento		keydown	--> KeyEvent non contiene clientX, clientY ma es keyCode
+																mostrare Goto Definition	--> lib.d.ts mostra overload firme metodi per evento */
+	console.log(event.clientX, event.clientY);		
+});													
