@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheAnders", "Anders\TheAnders.csproj", "{8AE9EF70-C424-4513-80AE-B2C07748B6DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angular", "Angular\Angular.csproj", "{A4263009-C0A5-47F9-AFED-66BC22846E22}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSBenefit", "TSBenefit\TSBenefit.csproj", "{4B7ECF38-8190-48C1-B2C3-AEBCED4E13C4}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{8AE9EF70-C424-4513-80AE-B2C07748B6DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AE9EF70-C424-4513-80AE-B2C07748B6DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AE9EF70-C424-4513-80AE-B2C07748B6DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A4263009-C0A5-47F9-AFED-66BC22846E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4263009-C0A5-47F9-AFED-66BC22846E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A4263009-C0A5-47F9-AFED-66BC22846E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A4263009-C0A5-47F9-AFED-66BC22846E22}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4B7ECF38-8190-48C1-B2C3-AEBCED4E13C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4B7ECF38-8190-48C1-B2C3-AEBCED4E13C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B7ECF38-8190-48C1-B2C3-AEBCED4E13C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
